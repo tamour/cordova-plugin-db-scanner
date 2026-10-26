@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-db-scanner"
+        version="1.0.0">
+    <name>DatabaseScanner</name>
+    <description>Scan and list SQLite database files within the app sandbox</description>
+    <license>MIT</license>
+
+    <js-module src="www/DatabaseScanner.js" name="DatabaseScanner">
+        <clobbers target="window.DatabaseScanner" />
+    </js-module>
+
+    <!-- iOS -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="DatabaseScanner">
+                <param name="ios-package" value="CDVDatabaseScanner" />
+            </feature>
+            <preference name="SwiftVersion" value="5.0" />
+        </config-file>
+
+        <!-- Swift source file -->
+        <source-file src="src/ios/CDVDatabaseScanner.swift" />
+    </platform>
+
+    <!-- Android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="DatabaseScanner">
+                <param name="android-package" value="com.example.plugin.DatabaseScanner" />
+            </feature>
+        </config-file>
+        <source-file src="src/android/DatabaseScanner.java" target-dir="src/com/example/plugin" />
+    </platform>
+</plugin>
